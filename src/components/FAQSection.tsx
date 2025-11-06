@@ -82,23 +82,23 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden transition-all"
+              className={`bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden transition-all animate-slide-up-in stagger-child-${(index % 5) + 1} group hover:shadow-lg`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors hover:-translate-x-1"
               >
-                <span className="font-semibold text-gray-900 dark:text-white pr-8">
+                <span className="font-semibold text-gray-900 dark:text-white pr-8 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {faq.question}
                 </span>
                 {openIndex === index ? (
-                  <ChevronUp className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                  <ChevronUp className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 transition-transform" />
                 ) : (
-                  <ChevronDown className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                  <ChevronDown className="h-5 w-5 text-gray-400 flex-shrink-0 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all" />
                 )}
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-5">
+                <div className="px-6 pb-5 animate-expand-down bg-gradient-to-b from-transparent to-blue-50 dark:to-blue-900/10">
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
                 </div>
               )}

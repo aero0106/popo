@@ -29,9 +29,9 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center cursor-pointer" onClick={() => onNavigate('home')}>
-            <Building2 className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-            <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">
+          <div className="flex items-center cursor-pointer group" onClick={() => onNavigate('home')}>
+            <Building2 className="h-8 w-8 text-blue-600 dark:text-blue-400 group-hover:animate-spin-slow transition-transform" />
+            <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               OGS Solution
             </span>
           </div>
@@ -41,10 +41,10 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium relative transition-colors pb-1 ${
                   currentPage === item.id
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                    ? 'text-blue-600 dark:text-blue-400 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 dark:after:bg-blue-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 dark:after:bg-blue-400 hover:after:w-full after:transition-all after:duration-300'
                 }`}
               >
                 {item.name}
@@ -83,19 +83,19 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
 
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group hover:scale-110 hover:-translate-y-1"
               aria-label="Toggle theme"
             >
               {theme === 'light' ? (
-                <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <Moon className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:animate-spin-slow" />
               ) : (
-                <Sun className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <Sun className="h-5 w-5 text-gray-700 dark:text-gray-300 group-hover:animate-spin-slow" />
               )}
             </button>
 
             <button
               onClick={() => onNavigate('get-started')}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all font-medium active:scale-95 hover:-translate-y-1 hover:shadow-lg"
             >
               Get Started
             </button>
@@ -129,7 +129,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 animate-slide-down-in">
           <div className="px-4 py-4 space-y-3">
             {navigation.map((item) => (
               <button
